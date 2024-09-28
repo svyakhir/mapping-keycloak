@@ -5,13 +5,21 @@ from config_keycloak import *
 keycloak_url = f"{keycloak_url_m}/realms/{realm_name_m}/protocol/openid-connect/token"
 
 # Получение токена
-def get_token_keycloak():
+def get_token_keycloak(totp_code=None):
+    totp_code = input(
+        "Введите ваш TOTP-код для двухфакторной аутентификации (если требуется, если не требуется нажмите Enter): ")
+
     data = {
         "client_id": client_id_m,
         "username": username_m,
         "password": password_m,
+        "client_secret": client_secret_m,
         "grant_type": "password"
     }
+
+    # Если требуется двухфакторная аутентификация, добавляем TOTP-код
+    if totp_code:
+        data["otp"] = totp_code
 
     # Отправка POST-запроса для получения токена
     response = requests.post(keycloak_url, data=data)

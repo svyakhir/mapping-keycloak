@@ -22,4 +22,4 @@ def get_role_id_name():
 
     return '\n'.join(result)
 
-print(get_role_id_name())
+print(f"\n{get_role_id_name()}")
