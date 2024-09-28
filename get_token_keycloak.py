@@ -33,5 +33,3 @@ def get_token_keycloak():
     else:
         return  f"Ошибка получения токена: {response.status_code}. Для дополнительной информации испльзуйте вывод " \
                 f"отладочной информации"
-
-print(get_token_keycloak())
