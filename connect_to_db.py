@@ -33,7 +33,7 @@ def add_user_minerva():
     c.commit()
     c.close()
 
-add_user_minerva()
+# add_user_minerva()
 
 def select_from_test():
     c = make_connection()
