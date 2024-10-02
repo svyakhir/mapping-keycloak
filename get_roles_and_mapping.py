@@ -51,11 +51,16 @@ keycloak_roles = get_keycloak_roles()
 
 for keycloak_role in keycloak_roles:
     id_role_db = []
+    # name_role_db = []  # Используется для вывода названия имен ролей
     keycloak_roles_excel = find_role_excel(keycloak_role[0])
     for keycloak_role_excel in keycloak_roles_excel:
         for role_db in roles_db:
             if keycloak_role_excel == role_db[0]:
                 id_role_db.append(f"({keycloak_role[1]}, {role_db[1]})")
+                # name_role_db.append(f"({keycloak_role[0]}, {role_db[0]})")  # Используется для вывода названия имен
+                # ролей
     if id_role_db:
         id_role_db_str = ", ".join(id_role_db)
+        # name_role_db_str = ", ".join(name_role_db)  # Используется для вывода названия имен ролей
+        # print(name_role_db_str)  # Используется для вывода названия имен ролей
         print(f"INSERT INTO keycloak_role_roles (keycloak_role_id, role_id) VALUES {id_role_db_str};")
