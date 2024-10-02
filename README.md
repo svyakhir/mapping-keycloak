@@ -1,11 +1,32 @@
-**Для генерации запросов, добавления ролей из кейклок в БД KMS выполнить:**
-1. В файл config_keycloak.py указать креды для подключения к Кейклок
-2. Для запуска основного файла get_role_id_gen_query.py требуются
-файлы config_keycloak.py и get_token_keycloak.py откуда берутся функции и креды
-3. Запустить get_role_id_gen_query.py в IDE. Он выдаст подготовленые запросы
-для выполнения в БД
+1. Генерация запросов SQL для добавление ролей и Id ролей в таблицу keycloak_roles
+- Клонируем репозиторий
+- Открываем в IDE
+- Создаем файл с кредами или используем существующий **config_keycloak.py**
+- Указывает креды для подключения Keycloak
 
-Для генерации запросов сопоставления ролей КМС и Кейклок (get_role_id_gen_query.py) 
-используется файл mapping.xlsx. Обычно его присылает Заказчик.
-Роли Кейклок должны быть указаны в столбце excel B, роли КМС в
-столбце G
+```
+keycloak_url_m = "https://example.ru" # URL Keycloak сервера
+realm_name_m = "example"  # Имя  Realm
+username_m = "example"  # Имя пользователя администратора
+password_m = "example"  # Пароль администратора
+client_id_m = "example"  # ID клиента 
+client_uuid_m = "11111111-1111-1111-1111-111111111111"
+client_secret_m = "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+```
+- запускаем скрипт **get_role_id_gen_query.py**
+
+2. Генерация sql запросов для маппинга ролей
+- Создаем файл с кредами или используем существующий **config_db.py**
+```
+host = "example"
+port = 5432
+user = "example"
+password = "example"
+dbname = "example"
+```
+- Добавляем файл **mapping.xlsx**. Его присылает Заказчик.
+При необходимости подредактировать его чтобы роли Кейклок 
+были указаны в столбце excel B, роли КМС в столбце G
+- запускаем **get_roles_and_mapping.py**
+
+**connect_to_db.py** - проверка подключения к БД, выводит списк пользователей
