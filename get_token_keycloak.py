@@ -41,3 +41,5 @@ def get_token_keycloak(totp_code=None):
     else:
         return  f"Ошибка получения токена: {response.status_code}. Для дополнительной информации испльзуйте вывод " \
                 f"отладочной информации"
+
+# print(get_token_keycloak(totp_code=None)) #  Для отладки убедиться что получает токен
